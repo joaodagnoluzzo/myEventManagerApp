@@ -21,7 +21,7 @@ class EventViewModel {
     public let events: BehaviorRelay<[Event]> = BehaviorRelay<[Event]>(value:[])
     
     public func fetchEvents(){
-        
+    
         let requestURL = URL(string: apiBaseEventURL)!
         
         let task = URLSession.shared.dataTask(with: requestURL, completionHandler: { (data, response, error) -> Void in
@@ -43,6 +43,27 @@ class EventViewModel {
         })
         
         task.resume()
+    }
+    
+    public func formatDate(dateInMilliseconds: Int?) -> String{
+        
+        guard let dateInMilliseconds = dateInMilliseconds else {return "00/00/0000" }
+        let date = Date(timeIntervalSince1970: (TimeInterval(dateInMilliseconds / 1000)))
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.locale = NSLocale(localeIdentifier: "pt_BR") as Locale
+        
+        return formatter.string(from: date)
+    }
+    
+    public func formatPrice(price: Double?) -> String {
+        
+        guard let price = price else { return "R$ --.--" }
+        
+        let result: String = "R$ \(price)"
+        
+        return result
     }
     
 }

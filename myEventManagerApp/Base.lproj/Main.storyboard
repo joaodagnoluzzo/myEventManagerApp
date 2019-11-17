@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,23 +16,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="106" id="20T-IZ-eMr" customClass="EventCell" customModule="myEventManagerApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="106"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="56" id="20T-IZ-eMr" customClass="EventCell" customModule="myEventManagerApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="20T-IZ-eMr" id="vhP-y1-jV7">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="do5-ob-ymz">
-                                            <rect key="frame" x="0.0" y="3" width="100" height="100"/>
+                                            <rect key="frame" x="3" y="3" width="50" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="100" id="5hD-6Q-gvV"/>
+                                                <constraint firstAttribute="height" constant="50" id="5hD-6Q-gvV"/>
                                                 <constraint firstAttribute="width" secondItem="do5-ob-ymz" secondAttribute="height" multiplier="1:1" id="ALW-RL-qE5"/>
-                                                <constraint firstAttribute="width" constant="100" id="SMj-q6-AmN"/>
+                                                <constraint firstAttribute="width" constant="50" id="SMj-q6-AmN"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AEm-jE-fyG">
-                                            <rect key="frame" x="108" y="41" width="286" height="24"/>
+                                            <rect key="frame" x="61" y="16" width="333" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -42,7 +43,7 @@
                                         <constraint firstAttribute="trailing" secondItem="AEm-jE-fyG" secondAttribute="trailing" constant="20" id="21D-Lx-Bez"/>
                                         <constraint firstItem="do5-ob-ymz" firstAttribute="centerY" secondItem="vhP-y1-jV7" secondAttribute="centerY" id="2tb-Nf-7WE"/>
                                         <constraint firstItem="do5-ob-ymz" firstAttribute="top" secondItem="vhP-y1-jV7" secondAttribute="topMargin" constant="-8" id="GoJ-to-k7E"/>
-                                        <constraint firstItem="do5-ob-ymz" firstAttribute="leading" secondItem="vhP-y1-jV7" secondAttribute="leadingMargin" constant="-20" id="VzM-GK-Cr9"/>
+                                        <constraint firstItem="do5-ob-ymz" firstAttribute="leading" secondItem="vhP-y1-jV7" secondAttribute="leadingMargin" constant="-17" id="VzM-GK-Cr9"/>
                                         <constraint firstItem="AEm-jE-fyG" firstAttribute="centerY" secondItem="do5-ob-ymz" secondAttribute="centerY" id="Zpc-DQ-SIP"/>
                                         <constraint firstItem="AEm-jE-fyG" firstAttribute="trailing" secondItem="vhP-y1-jV7" secondAttribute="trailingMargin" id="f1y-Y1-Nbw"/>
                                     </constraints>
@@ -59,10 +60,74 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="mbc-In-deE"/>
+                    <connections>
+                        <segue destination="g57-cF-EmQ" kind="show" id="yR1-Ni-xvc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7CG-Rz-jNM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="116.51785714285714"/>
+        </scene>
+        <!--Nome do evento-->
+        <scene sceneID="MNQ-aW-VnJ">
+            <objects>
+                <viewController storyboardIdentifier="EventDetailViewController" id="g57-cF-EmQ" customClass="EventDetailViewController" customModule="myEventManagerApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tzL-CL-QzN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T05-QY-aNy">
+                                <rect key="frame" x="20" y="111" width="374" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20/10/2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1d-9n-Bob">
+                                <rect key="frame" x="20" y="419" width="124" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="R$ 99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ke-DI-Td3">
+                                <rect key="frame" x="293" y="418" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="2Pa-NH-fqb">
+                                <rect key="frame" x="20" y="448" width="374" height="370"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9B5-DB-YJf">
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Compartilhar" id="2ol-Iv-er3"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zDH-v1-5uS"/>
+                                    <barButtonItem title="Check-in" id="eLE-m6-bcs"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="cGk-2s-rGS"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nome do evento" id="ZLo-pm-53c"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="2Pa-NH-fqb" id="39s-g5-iKc"/>
+                        <outlet property="eventDateLabel" destination="W1d-9n-Bob" id="ZM0-6y-i7z"/>
+                        <outlet property="eventImageView" destination="T05-QY-aNy" id="JGB-sc-Xu0"/>
+                        <outlet property="eventPriceLabel" destination="2ke-DI-Td3" id="8hA-7Y-tOD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7na-q6-5Z7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1856.521739130435" y="116.51785714285714"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rcs-gW-tbf">

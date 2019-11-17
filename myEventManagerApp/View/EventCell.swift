@@ -17,7 +17,7 @@ class EventCell: UITableViewCell {
     var imagePath: String? {
         didSet {
             guard let imagePath = imagePath else { return }
-//            self.imageView?.alpha = 0
+            self.imageView?.alpha = 0
             
             guard let url = URL(string: imagePath) else { return }
             self.eventImage?.load(url: url)
@@ -41,7 +41,6 @@ class EventCell: UITableViewCell {
     }
     
     func setupCellTitle(){
-//        self.eventName.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.title3)
         self.eventName.adjustsFontForContentSizeCategory = true
     }
     
@@ -56,26 +55,25 @@ class EventCell: UITableViewCell {
 
 extension UIImageView {
     func load(url: URL){
+        let animationDuration = 0.5
         DispatchQueue.global().async {
             if let data = try? Data(contentsOf: url){
                 if let image = UIImage(data: data){
                     DispatchQueue.main.async {
-//                        for view in self.superview!.subviews{
-//                            if let spinnerView = view as? UIActivityIndicatorView{
-//                                spinnerView.stopAnimating()
-//                                break
-//                            }
-//                        }
                         self.image = image
-//                        UIView.animate(withDuration: 0.5) {
-//                            self.alpha = 1
-//                        }
+                        UIView.animate(withDuration: animationDuration) {
+                            self.alpha = 1
+                        }
                     }
                 }
             } else {
-               print("Could not retrieve image")
-                
-            // handle error
+//               print("Could not retrieve image for: \(url)")
+                DispatchQueue.main.sync{
+                    self.image = UIImage(named: "imageNotAvailable.png")
+                    UIView.animate(withDuration: animationDuration){
+                        self.alpha = 1
+                    }
+                }
            }
         }
     }

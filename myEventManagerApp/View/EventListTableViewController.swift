@@ -28,6 +28,7 @@ class EventListTableViewController: UITableViewController {
         setupNavigationBar()
         setupBindings()
         setupCellConfig()
+        setupCellTapHandling()
         
         eventViewModel.fetchEvents()
         
@@ -62,6 +63,28 @@ class EventListTableViewController: UITableViewController {
             .subscribe(onNext: {
                 [weak self] events in
                 self?.eventList.accept(events)
+            }).disposed(by: disposeBag)
+    }
+    
+    func setupCellTapHandling(){
+        tableView
+        .rx
+            .modelSelected(Event.self)
+            .subscribe(onNext: {
+                [weak self] event in
+                
+                guard let selectedIndexPath = self?.tableView.indexPathForSelectedRow else { return }
+                
+                self?.tableView.deselectRow(at: selectedIndexPath, animated: true)
+                
+                guard let edvc = self?.storyboard?.instantiateViewController(identifier: "EventDetailViewController") as? EventDetailViewController else { return }
+                
+                edvc.event = self?.eventList.value[selectedIndexPath.row]
+                
+                self?.navigationController?.pushViewController(edvc, animated: true)
+                
+                
+                
             }).disposed(by: disposeBag)
     }
 }
