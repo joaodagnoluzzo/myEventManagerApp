@@ -25,18 +25,21 @@ class EventListTableViewController: UITableViewController {
         self.tableView.delegate = nil
         self.tableView.dataSource = nil
         
+        setupNavigationBar()
         setupBindings()
         setupCellConfig()
         
         eventViewModel.fetchEvents()
         
-        
-        
-//        tableView.register(EventCell.self, forCellReuseIdentifier:"cell")
-        
-//        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView()
         
     }
+    
+    func setupNavigationBar(){
+        
+        self.title = "Eventos"
+    }
+    
 
     // MARK: - Rx Setup
     func setupCellConfig(){
@@ -44,10 +47,9 @@ class EventListTableViewController: UITableViewController {
         eventList
             .bind(to: tableView
             .rx
-            .items(cellIdentifier: "cell", cellType: EventCell.self)){
+            .items(cellIdentifier: "eventCell", cellType: EventCell.self)){
                         row, event, cell in
                         cell.configureWithEvent(event: event)
-                print(event.title)
         }.disposed(by: disposeBag)
         
     }
@@ -62,13 +64,4 @@ class EventListTableViewController: UITableViewController {
                 self?.eventList.accept(events)
             }).disposed(by: disposeBag)
     }
-    
-//    vc.selectedUser
-//        .subscribe(onNext: { [weak self] user in
-//            var list = self!.listOfUsers.value
-//            list[selectedIndexPath.row] = user
-//            self?.listOfUsers.accept(list)
-//        }).disposed(by: self!.disposeBag)
-    
-
 }
