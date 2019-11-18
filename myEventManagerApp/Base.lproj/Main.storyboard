@@ -119,10 +119,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Nome do evento" id="ZLo-pm-53c"/>
                     <connections>
+                        <outlet property="checkinButton" destination="eLE-m6-bcs" id="YC8-pK-igb"/>
                         <outlet property="descriptionTextView" destination="2Pa-NH-fqb" id="39s-g5-iKc"/>
                         <outlet property="eventDateLabel" destination="W1d-9n-Bob" id="ZM0-6y-i7z"/>
                         <outlet property="eventImageView" destination="T05-QY-aNy" id="JGB-sc-Xu0"/>
                         <outlet property="eventPriceLabel" destination="2ke-DI-Td3" id="8hA-7Y-tOD"/>
+                        <outlet property="shareButton" destination="2ol-Iv-er3" id="2yG-Fi-rjj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7na-q6-5Z7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
