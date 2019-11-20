@@ -66,4 +66,33 @@ class EventViewModel {
         return result
     }
     
+    func applyCheckin(eventId: String, name: String, email: String){
+        
+        
+        guard let checkinURL = URL(string: self.apiCheckinURL) else { return }
+        
+        var checkinJson = [String: Any]()
+        
+        checkinJson["eventId"] = eventId
+        checkinJson["name"] = name
+        checkinJson["email"] = email
+        
+        do{
+            let body = try JSONSerialization.data(withJSONObject: checkinJson, options: [])
+            var request = URLRequest(url: checkinURL)
+
+            request.httpMethod = "POST"
+            request.httpBody = body
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            let task = URLSession.shared.dataTask(with: request)
+            
+            task.resume()
+        } catch {
+            
+            // handle errors
+        }
+    }
+    
 }

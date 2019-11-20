@@ -43,6 +43,8 @@ class EventDetailViewController: UIViewController {
         self.eventImageView.contentMode = .scaleToFill
         
         setupShareButton()
+        setupCheckinButton()
+        
     }
     
     func setupCheckinButton(){
@@ -53,7 +55,12 @@ class EventDetailViewController: UIViewController {
             .subscribe(onNext:{
                 [weak self] in
                 
+                
+                guard let eventId = self?.event?.id else { return }
+                
                 //present modal view for checkin
+                print("checkin")
+                self?.eventViewModel.applyCheckin(eventId: eventId,  name: "test", email: "test@mail.com")
                 
             }).disposed(by: disposeBag)
         
@@ -66,25 +73,23 @@ class EventDetailViewController: UIViewController {
             .subscribe(onNext:{
                 [weak self] in
                 
-                let actionSheet = UIAlertController(title: "Compartilhar", message: nil, preferredStyle: .actionSheet)
+                guard let eventImageToShare = self?.eventImageView.image, let eventTitleToShare = self?.title, let urlToShare = URL(string:(self?.event?.image!)!) else {
+                    
+                    let alertController = UIAlertController(title: "Erro", message: "Não foi possivel carregar as informações para compartilhar o evento.", preferredStyle: .alert)
                 
-                actionSheet.addAction(UIAlertAction(title: "Facebook", style: .default) { (UIAlertAction) in
-                    print("facebook")
-                })
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 
-                actionSheet.addAction(UIAlertAction(title: "Twitter", style: .default) { (UIAlertAction) in
-                    print("twitter")
-                })
+                    self?.present(alertController, animated: true, completion: nil)
+                        
                 
-                actionSheet.addAction(UIAlertAction(title: "Instagram", style: .default) { (UIAlertAction) in
-                    print("instagram")
-                })
+                    return
+                }
                 
-                actionSheet.addAction(UIAlertAction(title: "Cancelar", style: .cancel) { (UIAlertAction) in
-                    print("cancel")
-                })
-                
-                self?.present(actionSheet, animated: true, completion: nil)
+                let activityViewController = UIActivityViewController(activityItems: [urlToShare, eventImageToShare, eventTitleToShare], applicationActivities: [])
+
+                activityViewController.excludedActivityTypes = [.airDrop, .mail, .addToReadingList, .assignToContact, .markupAsPDF, .saveToCameraRoll]
+                    
+                self?.present(activityViewController, animated: true, completion: nil)
                 
             }).disposed(by: disposeBag)
     }
