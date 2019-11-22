@@ -67,7 +67,6 @@ extension UIImageView {
                     }
                 }
             } else {
-//               print("Could not retrieve image for: \(url)")
                 DispatchQueue.main.sync{
                     self.image = UIImage(named: "imageNotAvailable.png")
                     UIView.animate(withDuration: animationDuration){

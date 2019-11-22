@@ -21,8 +21,7 @@ class CheckinViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let eventViewModel = EventViewModel()
     
-    let lastResponseStatus: BehaviorRelay<ResponseStatus> = BehaviorRelay(value: ResponseStatus.ErrorMessage)
-    
+    var lastResponseStatus: ResponseStatus = ResponseStatus.ErrorMessage
     
     public var eventId: String?
     
@@ -33,6 +32,8 @@ class CheckinViewController: UIViewController {
         setupResponseBinding()
         setupConfirmButton()
         setupCancelButton()
+        
+        
 
     }
     
@@ -43,7 +44,7 @@ class CheckinViewController: UIViewController {
         .asObservable()
         .subscribe(onNext: {
             [weak self] status in
-            self?.lastResponseStatus.accept(status)
+            self?.lastResponseStatus = status
         }).disposed(by: disposeBag)
     }
     
@@ -58,12 +59,17 @@ class CheckinViewController: UIViewController {
                 
                 guard let eventId = self?.eventId, let name = self?.nameTextField.text, let email = self?.emailTextField.text else { return }
                 
+                if name.isEmpty || email.isEmpty {
+                    let emptyFieldMessage = UIAlertController(title: "Erro", message: "É necessário preencher todos os campos para fazer check-in", preferredStyle: .alert)
+                    emptyFieldMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self?.present(emptyFieldMessage, animated: true, completion: nil)
+                }
+                
                 self?.eventViewModel.applyCheckin(eventId: eventId, name: name, email: email)
                 
                 var title = "Erro"
                 var message = "Não foi possível efetuar o Check-in!"
-                if let status = self?.lastResponseStatus.value {
-                    
+                if let status = self?.lastResponseStatus {
                     if status == ResponseStatus.Success {
                         title = "Check-in"
                         message = "Check-in efetuado com sucesso! Aproveite o evento."
@@ -95,8 +101,5 @@ class CheckinViewController: UIViewController {
         
     }
     
-    
-    
-    
-
 }
+

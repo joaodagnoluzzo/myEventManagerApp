@@ -48,22 +48,22 @@ class EventViewModel {
                             self.events.accept(result)
                             
                             self.lastResponseStatus.accept(ResponseStatus.Success)
-                            print("Http response status: 200 Success")
+//                            print("Http response status: 200 Success")
                         
                         } catch {
                             self.lastResponseStatus.accept(ResponseStatus.InvalidJSON)
-                            print("JSON Error: \(error)")
+//                            print("JSON Error: \(error)")
                         }
                     }
                 case 400:
                     self.lastResponseStatus.accept(ResponseStatus.InvalidRequest)
-                    print("Http response status: 404 Bad Request")
+//                    print("Http response status: 404 Bad Request")
                 default:
                     self.lastResponseStatus.accept(ResponseStatus.ErrorMessage)
-                    print("Http Response status: \(httpResponse.statusCode) Error")
-                    if let error = error {
-                        print("Error: \(error)")
-                    }
+//                    print("Http Response status: \(httpResponse.statusCode) Error")
+//                    if let error = error {
+//                        print("Error: \(error)")
+//                    }
                 }
             }
             
@@ -74,7 +74,7 @@ class EventViewModel {
     
     public func formatDate(dateInMilliseconds: Int?) -> String{
         
-        guard let dateInMilliseconds = dateInMilliseconds else {return "00/00/0000" }
+        guard let dateInMilliseconds = dateInMilliseconds else {return "--/--/----" }
         let date = Date(timeIntervalSince1970: (TimeInterval(dateInMilliseconds / 1000)))
         let formatter = DateFormatter()
         
@@ -88,6 +88,7 @@ class EventViewModel {
         
         guard let price = price else { return "R$ --.--" }
         
+        print(price)
         let result: String = "R$ \(price)"
         
         return result
@@ -121,16 +122,16 @@ class EventViewModel {
                     switch httpResponse.statusCode {
                     case 200:
                         self.lastResponseStatus.accept(ResponseStatus.Success)
-                        print("Http response status: 200 Success")
+//                        print("Http response status: 200 Success")
                     case 400:
                         self.lastResponseStatus.accept(ResponseStatus.InvalidRequest)
-                        print("Http response status: 404 Bad Request")
+//                        print("Http response status: 404 Bad Request")
                     default:
                         self.lastResponseStatus.accept(ResponseStatus.ErrorMessage)
-                        print("Http Response status: \(httpResponse.statusCode) Error")
-                        if let error = error {
-                            print("Error: \(error)")
-                        }
+//                        print("Http Response status: \(httpResponse.statusCode) Error")
+//                        if let error = error {
+//                            print("Error: \(error)")
+//                        }
                     }
                 }
                 
