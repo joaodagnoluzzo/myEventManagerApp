@@ -10,7 +10,17 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+enum ResponseStatus {
+    case ErrorMessage
+    case InvalidJSON
+    case InvalidRequest
+    case Success
+}
+
 class EventViewModel {
+    
+    
+    
     
     
     private let apiBaseEventURL = "http://5b840ba5db24a100142dcd8c.mockapi.io/api/events"
@@ -19,6 +29,8 @@ class EventViewModel {
     
     
     public let events: BehaviorRelay<[Event]> = BehaviorRelay<[Event]>(value:[])
+    public let lastResponseStatus: BehaviorRelay<ResponseStatus> = BehaviorRelay<ResponseStatus>(value: ResponseStatus.ErrorMessage)
+    
     
     public func fetchEvents(){
     
@@ -26,20 +38,35 @@ class EventViewModel {
         
         let task = URLSession.shared.dataTask(with: requestURL, completionHandler: { (data, response, error) -> Void in
             
-            if let error = error {
-                //handle error
-                print("Http error: \(error)")
-                
-            } else if let data = data {
-                do {
-                    let result = try JSONDecoder().decode([Event].self, from: data)
-                    
-                    self.events.accept(result)
-                    
-                } catch {
-                    print("JSON Error: \(error)")
+            if let httpResponse = response as? HTTPURLResponse {
+            
+                switch httpResponse.statusCode {
+                case 200:
+                    if let data = data {
+                        do {
+                            let result = try JSONDecoder().decode([Event].self, from: data)
+                            self.events.accept(result)
+                            
+                            self.lastResponseStatus.accept(ResponseStatus.Success)
+                            print("Http response status: 200 Success")
+                        
+                        } catch {
+                            self.lastResponseStatus.accept(ResponseStatus.InvalidJSON)
+                            print("JSON Error: \(error)")
+                        }
+                    }
+                case 400:
+                    self.lastResponseStatus.accept(ResponseStatus.InvalidRequest)
+                    print("Http response status: 404 Bad Request")
+                default:
+                    self.lastResponseStatus.accept(ResponseStatus.ErrorMessage)
+                    print("Http Response status: \(httpResponse.statusCode) Error")
+                    if let error = error {
+                        print("Error: \(error)")
+                    }
                 }
             }
+            
         })
         
         task.resume()
@@ -77,6 +104,7 @@ class EventViewModel {
         checkinJson["name"] = name
         checkinJson["email"] = email
         
+        
         do{
             let body = try JSONSerialization.data(withJSONObject: checkinJson, options: [])
             var request = URLRequest(url: checkinURL)
@@ -86,7 +114,27 @@ class EventViewModel {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             
-            let task = URLSession.shared.dataTask(with: request)
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                
+                    switch httpResponse.statusCode {
+                    case 200:
+                        self.lastResponseStatus.accept(ResponseStatus.Success)
+                        print("Http response status: 200 Success")
+                    case 400:
+                        self.lastResponseStatus.accept(ResponseStatus.InvalidRequest)
+                        print("Http response status: 404 Bad Request")
+                    default:
+                        self.lastResponseStatus.accept(ResponseStatus.ErrorMessage)
+                        print("Http Response status: \(httpResponse.statusCode) Error")
+                        if let error = error {
+                            print("Error: \(error)")
+                        }
+                    }
+                }
+                
+            })
             
             task.resume()
         } catch {

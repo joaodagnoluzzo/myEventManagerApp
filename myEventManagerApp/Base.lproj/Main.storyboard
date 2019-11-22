@@ -160,5 +160,82 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="116.51785714285714"/>
         </scene>
+        <!--Checkin View Controller-->
+        <scene sceneID="ydT-kZ-M46">
+            <objects>
+                <viewController storyboardIdentifier="CheckinViewController" interfaceStyle="light" id="mvx-6S-JZL" customClass="CheckinViewController" customModule="myEventManagerApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EIj-sP-76f">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCC-bN-ONn">
+                                <rect key="frame" x="140" y="438" width="134" height="30"/>
+                                <state key="normal" title="Confirmar Check-in"/>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zOm-eh-5y1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <viewLayoutGuide key="safeArea" id="Mua-Lo-Q3N"/>
+                                <items>
+                                    <navigationItem title="Check-in" id="gYs-9W-CuA">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="pho-Xk-JNA">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="51o-bU-T3H">
+                                                <rect key="frame" x="20" y="7" width="61" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Cancelar"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="GQk-ZC-cbX">
+                                <rect key="frame" x="17" y="294" width="378" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yty-5o-8Kv">
+                                <rect key="frame" x="18" y="235" width="378" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Para concluir o check-in precisamos saber o seu nome e email. Fique tranquilo(a), não mandaremos spam 😉" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ0-iK-59Y">
+                                <rect key="frame" x="18" y="101" width="378" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="105" id="3Sl-mp-JKV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GQk-ZC-cbX" firstAttribute="leading" secondItem="w6i-f7-OlB" secondAttribute="leading" constant="17" id="3LX-jg-hKt"/>
+                            <constraint firstItem="yty-5o-8Kv" firstAttribute="top" secondItem="VZ0-iK-59Y" secondAttribute="bottom" constant="29" id="4OM-cx-sVc"/>
+                            <constraint firstItem="zOm-eh-5y1" firstAttribute="top" secondItem="w6i-f7-OlB" secondAttribute="top" id="7xY-WQ-UuC"/>
+                            <constraint firstItem="VZ0-iK-59Y" firstAttribute="centerX" secondItem="yty-5o-8Kv" secondAttribute="centerX" id="CUD-Z6-jJ1"/>
+                            <constraint firstItem="zOm-eh-5y1" firstAttribute="leading" secondItem="w6i-f7-OlB" secondAttribute="leading" id="Ifd-sb-Yjg"/>
+                            <constraint firstItem="GQk-ZC-cbX" firstAttribute="top" secondItem="yty-5o-8Kv" secondAttribute="bottom" constant="25" id="Lse-5f-8xU"/>
+                            <constraint firstItem="yty-5o-8Kv" firstAttribute="centerX" secondItem="rCC-bN-ONn" secondAttribute="centerX" id="Prp-LH-ocy"/>
+                            <constraint firstItem="w6i-f7-OlB" firstAttribute="trailing" secondItem="GQk-ZC-cbX" secondAttribute="trailing" constant="19" id="TdZ-Qf-spB"/>
+                            <constraint firstItem="VZ0-iK-59Y" firstAttribute="leading" secondItem="w6i-f7-OlB" secondAttribute="leading" constant="18" id="VFM-UY-SEB"/>
+                            <constraint firstItem="rCC-bN-ONn" firstAttribute="centerY" secondItem="w6i-f7-OlB" secondAttribute="centerY" id="Wip-zT-VSe"/>
+                            <constraint firstItem="VZ0-iK-59Y" firstAttribute="leading" secondItem="yty-5o-8Kv" secondAttribute="leading" id="ZNl-hK-gzQ"/>
+                            <constraint firstItem="zOm-eh-5y1" firstAttribute="centerX" secondItem="VZ0-iK-59Y" secondAttribute="centerX" id="gCm-Sv-OB6"/>
+                            <constraint firstItem="rCC-bN-ONn" firstAttribute="centerX" secondItem="w6i-f7-OlB" secondAttribute="centerX" id="l0n-Rj-pl6"/>
+                            <constraint firstItem="VZ0-iK-59Y" firstAttribute="top" secondItem="zOm-eh-5y1" secondAttribute="bottom" constant="13" id="tWa-mC-G9b"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="w6i-f7-OlB"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="51o-bU-T3H" id="XuV-9i-EVf"/>
+                        <outlet property="confirmButton" destination="rCC-bN-ONn" id="vdh-SP-SJ1"/>
+                        <outlet property="emailTextField" destination="GQk-ZC-cbX" id="x4h-sm-nI9"/>
+                        <outlet property="nameTextField" destination="yty-5o-8Kv" id="wVi-nW-g6I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLI-su-mHe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2689.8550724637685" y="116.51785714285714"/>
+        </scene>
     </scenes>
 </document>

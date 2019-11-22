@@ -37,12 +37,10 @@ class EventListTableViewController: UITableViewController {
     }
     
     func setupNavigationBar(){
-        
         self.title = "Eventos"
     }
     
 
-    // MARK: - Rx Setup
     func setupCellConfig(){
         
         eventList

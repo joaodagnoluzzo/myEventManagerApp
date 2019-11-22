@@ -17,6 +17,7 @@
 		CF588906237EED52003440B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF588904237EED52003440B6 /* LaunchScreen.storyboard */; };
 		CF588911237EED53003440B6 /* myEventManagerAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF588910237EED53003440B6 /* myEventManagerAppTests.swift */; };
 		CF94115A23809EBC008E8A25 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94115923809EBC008E8A25 /* Checkin.swift */; };
+		CFA7BC1F23859492006EE16A /* CheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA7BC1E23859492006EE16A /* CheckinViewController.swift */; };
 		CFB2EF8E237EF02F00048B50 /* EventListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB2EF8D237EF02F00048B50 /* EventListTableViewController.swift */; };
 		CFB2EF90237EF06100048B50 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB2EF8F237EF06100048B50 /* Event.swift */; };
 		CFB2EF92237EF1AB00048B50 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB2EF91237EF1AB00048B50 /* EventViewModel.swift */; };
@@ -51,6 +52,7 @@
 		CF588910237EED53003440B6 /* myEventManagerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myEventManagerAppTests.swift; sourceTree = "<group>"; };
 		CF588912237EED53003440B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF94115923809EBC008E8A25 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
+		CFA7BC1E23859492006EE16A /* CheckinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinViewController.swift; sourceTree = "<group>"; };
 		CFB2EF8D237EF02F00048B50 /* EventListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListTableViewController.swift; sourceTree = "<group>"; };
 		CFB2EF8F237EF06100048B50 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CFB2EF91237EF1AB00048B50 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				CFB2EF8D237EF02F00048B50 /* EventListTableViewController.swift */,
 				CFB2EF93237EF4D500048B50 /* EventCell.swift */,
 				CF26C35A2381C50D00606B56 /* EventDetailViewController.swift */,
+				CFA7BC1E23859492006EE16A /* CheckinViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				CF5888FA237EED52003440B6 /* AppDelegate.swift in Sources */,
 				CF94115A23809EBC008E8A25 /* Checkin.swift in Sources */,
 				CFB2EF90237EF06100048B50 /* Event.swift in Sources */,
+				CFA7BC1F23859492006EE16A /* CheckinViewController.swift in Sources */,
 				CFB2EF92237EF1AB00048B50 /* EventViewModel.swift in Sources */,
 				CFB2EF94237EF4D500048B50 /* EventCell.swift in Sources */,
 				CF26C35B2381C50D00606B56 /* EventDetailViewController.swift in Sources */,

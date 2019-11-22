@@ -58,9 +58,13 @@ class EventDetailViewController: UIViewController {
                 
                 guard let eventId = self?.event?.id else { return }
                 
-                //present modal view for checkin
-                print("checkin")
-                self?.eventViewModel.applyCheckin(eventId: eventId,  name: "test", email: "test@mail.com")
+                let checkinViewController = self?.storyboard?.instantiateViewController(identifier: "CheckinViewController") as! CheckinViewController
+               
+                checkinViewController.modalPresentationStyle = .fullScreen
+                
+                checkinViewController.eventId = eventId
+                
+                self?.present(checkinViewController, animated: true, completion: nil)
                 
             }).disposed(by: disposeBag)
         
