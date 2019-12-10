@@ -10,6 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+// TODO: Deixar por padrão suas classes como final a não ser que você vá criar subclasses. O swift compiler faz algumas 
+// otimizações de compilação
+
+// TODO: DICA: Evitar usar Rx dado que a curva de aprendizado é muito alta no inicio. Tente aquiteturas como MVC normal ou 
+// MVP.
+
 class CheckinViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -21,7 +27,12 @@ class CheckinViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let eventViewModel = EventViewModel()
     
+    // TODO: Não faz sentido essa variável estar exposta dado que você não a modifica fora da classe
+    
     var lastResponseStatus: ResponseStatus = ResponseStatus.ErrorMessage
+    
+    // TODO: Variável public. Ela pode ser apenas var. Com o uso de storyboards isso é um dos problemas que eles nos trazem. 
+    // A injeção de dependência fica prejudicada.
     
     public var eventId: String?
     
@@ -55,9 +66,16 @@ class CheckinViewController: UIViewController {
         .rx
         .tap
             .subscribe(onNext: {
+
+                
                 [weak self] in
                 
+                // TODO: Bloco com muita responsabilidade. Está muito grande. Dificulta o entendimento do que ele realmente faz.
+                // Abstrair a responsabilidades em métodos/classes
+                
                 guard let eventId = self?.eventId, let name = self?.nameTextField.text, let email = self?.emailTextField.text else { return }
+                
+                // TODO: Evitar string oriented programming. Usar uma classes para centralizar tudo ou usar Swiftgen ou R.swift por exemplo
                 
                 if name.isEmpty || email.isEmpty {
                     let emptyFieldMessage = UIAlertController(title: "Erro", message: "É necessário preencher todos os campos para fazer check-in", preferredStyle: .alert)
@@ -69,6 +87,9 @@ class CheckinViewController: UIViewController {
                 
                 var title = "Erro"
                 var message = "Não foi possível efetuar o Check-in!"
+                
+                // TODO: O state da tela poderia estar no didSet da variável e realizar o que deve ser feito em um switch case por exemplo
+                
                 if let status = self?.lastResponseStatus {
                     if status == ResponseStatus.Success {
                         title = "Check-in"
