@@ -21,7 +21,7 @@ class EventViewModel {
     
     
     
-    
+    // TODO: Fazer algum tipo de wrap para as URL's e talvez abstrair os endpoints e protocolos par divisão de responsabilidade
     
     private let apiBaseEventURL = "http://5b840ba5db24a100142dcd8c.mockapi.io/api/events"
     private let apiCheckinURL = "http://5b840ba5db24a100142dcd8c.mockapi.io/api/checkin"
@@ -34,7 +34,12 @@ class EventViewModel {
     
     public func fetchEvents(){
     
+        // TODO: Evitar forced unwrap. Usar If let ou guard let
+        
         let requestURL = URL(string: apiBaseEventURL)!
+        
+        // TODO: Abstrair camada de rede em classes de forma genérica e injetar o service ( Repository Pattern ) dentro do viewModel
+        // Da maneira que está você tem muita repetição de código
         
         let task = URLSession.shared.dataTask(with: requestURL, completionHandler: { (data, response, error) -> Void in
             
@@ -72,6 +77,14 @@ class EventViewModel {
         task.resume()
     }
     
+    // TODO: Por padrão, todos os métodos em swift são internal, ou seja, são acessíveis dentro do mesmo módulo. A não ser
+    // que este método estivesse em outro módulo, não faz sentido ele ser public. Isso vale para todos os métodos no projeto
+    // principal que estão public.
+    
+    
+    // TODO: Esse método poderia ser uma extension ou de Int ou de String, ou até mesmo estar uma classe separada
+    // afim de ser reutilizável
+    
     public func formatDate(dateInMilliseconds: Int?) -> String{
         
         guard let dateInMilliseconds = dateInMilliseconds else {return "--/--/----" }
@@ -84,6 +97,8 @@ class EventViewModel {
         return formatter.string(from: date)
     }
     
+    // TODO: Mesma da de cima aqui.
+    
     public func formatPrice(price: Double?) -> String {
         
         guard let price = price else { return "R$ --.--" }
@@ -93,6 +108,8 @@ class EventViewModel {
         
         return result
     }
+    
+    // TODO: Abtrair camada de rede.
     
     func applyCheckin(eventId: String, name: String, email: String){
         
