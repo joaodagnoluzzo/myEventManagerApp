@@ -10,6 +10,8 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+// TODO: final class
+
 class EventDetailViewController: UIViewController {
     
     
@@ -25,16 +27,19 @@ class EventDetailViewController: UIViewController {
     private let eventViewModel = EventViewModel()
     private let disposeBag = DisposeBag()
     
+    // TODO: Variável não precisa ser public e não precisa inicializar com nil.
+    
     public var event: Event? = nil
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+                
         guard let event = event else { return }
         
         self.title = event.title
+        
+        // TODO: Dividir responsabildiades. Externalizar para um método privado
         
         self.eventDateLabel.text = self.eventViewModel.formatDate(dateInMilliseconds: event.date)
         self.eventPriceLabel.text = self.eventViewModel.formatPrice(price: event.price)
@@ -77,7 +82,11 @@ class EventDetailViewController: UIViewController {
             .subscribe(onNext:{
                 [weak self] in
                 
+                // TODO: Bloco com muita responsabilidade. Muito grande.
+                
                 guard let eventImageToShare = self?.eventImageView.image, let eventTitleToShare = self?.title, let urlToShare = URL(string:(self?.event?.image!)!) else {
+                    
+                    // TODO: Esse é um metodo comum. Portanto pode ser utilizar um protocolo ou uma superclasse afim de evitar repetições de código
                     
                     let alertController = UIAlertController(title: "Erro", message: "Não foi possivel carregar as informações para compartilhar o evento.", preferredStyle: .alert)
                 
@@ -88,6 +97,8 @@ class EventDetailViewController: UIViewController {
                 
                     return
                 }
+                
+                // TODO: Colocar ou na superclasse ou em outras classes afim de dividir responsabilidades.
                 
                 let activityViewController = UIActivityViewController(activityItems: [urlToShare, eventImageToShare, eventTitleToShare], applicationActivities: [])
 
