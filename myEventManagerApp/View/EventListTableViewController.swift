@@ -10,11 +10,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+// TODO: Final class
+
 class EventListTableViewController: UITableViewController {
 
     var eventViewModel = EventViewModel()
     
     private let disposeBag = DisposeBag()
+    
+    // TODO: Quem deveria segurar essa lista deveria ser o viewModel.
     
     let eventList: BehaviorRelay<[Event]> = BehaviorRelay(value: [])
     
@@ -36,10 +40,14 @@ class EventListTableViewController: UITableViewController {
         
     }
     
+    // TODO: String oriented
+    // TODO: private func
+    
     func setupNavigationBar(){
         self.title = "Eventos"
     }
     
+    // TODO: private func
 
     func setupCellConfig(){
         
@@ -53,6 +61,8 @@ class EventListTableViewController: UITableViewController {
         
     }
     
+    // TODO: private func
+    
     func setupBindings(){
         
         self.eventViewModel
@@ -64,12 +74,16 @@ class EventListTableViewController: UITableViewController {
             }).disposed(by: disposeBag)
     }
     
+    // TODO: private func
+    
     func setupCellTapHandling(){
         tableView
         .rx
             .modelSelected(Event.self)
             .subscribe(onNext: {
                 [weak self] event in
+                
+                // TODO: Bloco muito grande. Muito dificil saber o que faz. Separar em métodos/classes afim de dividir a responsabilidade
                 
                 guard let selectedIndexPath = self?.tableView.indexPathForSelectedRow else { return }
                 
