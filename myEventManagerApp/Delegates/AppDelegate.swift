@@ -6,12 +6,15 @@
 //  Copyright © 2019 João Pedro Cappelletto D'Agnoluzzo. All rights reserved.
 //
 
+// TODO: Remover headers de arquivo
+
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    // TODO: Remover todos os comentários e métodos não utilizados.
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
