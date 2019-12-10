@@ -8,6 +8,11 @@
 
 import Foundation
 
+// TODO: Aqui está só decodable, verificar se os models realmente precisam ser Decodable e Encodable (Codable)
+
+// TODO: Todas as variáveis são realmente optionals? Elas podem não ser retornadas no backend? Tomar cuidado com isso. Quando se utilza 
+// struct não necessariamente suas variáveis tem de ser optional. Na verdade 99% é ao contrario.
+
 struct Event: Decodable {
 
     let people: [Person]?
