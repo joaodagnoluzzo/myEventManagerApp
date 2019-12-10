@@ -9,6 +9,7 @@
 import Foundation
 
 
+// TODO: Se você não for encodar, faz sentido esse model ser apenas Decodable.
 
 struct Checkin : Codable {
     
